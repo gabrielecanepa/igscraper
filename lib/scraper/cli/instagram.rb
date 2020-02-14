@@ -95,7 +95,7 @@ module Scraper
           @parser.on("-o", "--output [PATH]",
                      String,
                      "Specify an output file relative to your home directory " \
-                     "(defaults to 'Desktop/Instagram Data (:timestamp).csv')") do |output|
+                     "(defaults to 'Downloads/Instagram Data (:timestamp).csv')") do |output|
             @output = output
           end
         end
@@ -124,7 +124,7 @@ module Scraper
       end
 
       DEFAULTS = {
-        output: "Desktop/IG Data (#{Time.now.strftime('%Y-%m-%d at %H.%M.%S')}).csv",
+        output: "Downloads/Instagram Data (#{Time.now.strftime('%Y-%m-%d at %H.%M.%S')}).csv",
       }.freeze
 
       def initialize(args, defaults = DEFAULTS)
