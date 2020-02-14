@@ -101,7 +101,7 @@ module Scraper
 
         country_code, publisher = scrape_country_code_and_publisher(post[:shortcode])
         filtered_post = filter_post(post)
-        filtered_post.merge(country_code: country_code, **publisher)
+        filtered_post.merge(country_code: country_code, **(publisher || {}))
       end
 
       def parse_post_node(post_node)
