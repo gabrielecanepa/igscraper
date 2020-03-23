@@ -1,6 +1,6 @@
 # Instagram Scraper
 
-A simple Ruby application to scrape Instagram posts (tagged or from an hashtag), built using a set of helpers and proxies necessary to bypass the API rate limit.
+A simple Ruby application to scrape Instagram posts, built using a set of helpers and proxies to bypass the API's rate limit.
 
 The scraper can be used with a CLI or a Sinatra-based API.
 
