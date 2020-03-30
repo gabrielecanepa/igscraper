@@ -65,3 +65,7 @@ Returns a CSV file as attachment, containing the posts matching the specified pa
   - `output=[filename]`
 
 \* at least one has to be specified
+
+## License
+
+[MIT](https://gabrielecanepa.mit-license.org)
