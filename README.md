@@ -19,21 +19,23 @@ bundle
 ```ruby
 require_relative "lib/scraper"
 
-scrape_instagram_posts("@nike", min_likes: 10_000, keywords: %w[sportswear shoes influencer]) # => array of posts
+scrape_instagram_posts("@lewagonlisbon", min_likes: 100) # => array of posts
 ```
 
 ### CLI
 
-Run locally, specifying one or multiple (comma-separated) usernames or hashtags as target:
+> ⚠️ Make sure to have `./bin` in your `\$PATH`
+
+Run locally, specifying one or multiple (comma-separated) usernames or hashtags as targets:
 
 ```sh
-bin/instagram_scraper -T @nike,@adidas -l 10000 -k sportswear,shoes,influencer
+instagram_scraper -T @gabrielecanepa,#lewagon -l 50 -k coding
 ```
 
 Print the usage message in your terminal:
 
 ```sh
-bin/instagram_scraper -h
+instagram_scraper -h
 ```
 
 ### API
