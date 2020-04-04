@@ -60,7 +60,7 @@ module Scraper
                      Array,
                      "Specify one or multiple (comma-separated) keywords that must be present in a post caption " \
                      "(e.g. sportswear,influencer)") do |keywords|
-            @keywords = keywords.split(",")
+            @keywords = keywords
           end
         end
 
