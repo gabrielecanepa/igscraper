@@ -21,7 +21,7 @@ module Scraper
 
         def define_parser_options(parser)
           @parser = parser
-          @parser.program_name = "instagram_scraper"
+          @parser.program_name = "instascraper v#{VERSION}"
           @parser.banner = "Usage: #{@parser.program_name} -T <target> [options]"
           @parser.separator "\nArguments:"
           define_arguments

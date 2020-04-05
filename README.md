@@ -1,26 +1,46 @@
 # Instascraper
 
-A simple Ruby application to scrape Instagram posts, built using a set of helpers and proxies to bypass [the API's rate limit](https://developers.facebook.com/docs/instagram-api/overview/#rate-limiting/).
+A simple Ruby gem/application to scrape Instagram posts, built using a set of helpers and proxies to bypass [the API's rate limit](https://developers.facebook.com/docs/instagram-api/overview/#rate-limiting/).
 
-The scraper can be used with a Ruby gem, a CLI app, or a [Sinatra](http://sinatrarb.com/)-based API.
+The scraper can be used with <!-- TODO: a Ruby gem, -->a CLI app, or a [Sinatra](http://sinatrarb.com/)-based API.
 
 ## Usage
 
 ### Ruby
 
-Install the gem with `gem install instascraper`.
+<!-- Install the gem with `gem install instascraper`. -->
 
 ```ruby
-require "instascraper"
+require_relative "lib/instascraper"
 
 options = {
-  target: %w[@lewagonlisbon @gabrisquonk #lewagon],
-  min_likes: 100,
-  start_date: Date.new(2018, 01, 01),
-  keywords: %w[coding ruby lisbon]
+  min_likes: 50,
+  start_date: Date.new(2017, 01, 01),
+  end_date: Date.new(2020, 01, 01),
+  keywords: ["coding", "lewagon"],
 }
 
-instascraper(options) # => TODO: posts
+@instascraper = Instascraper.new(options)
+@instascraper.scrape(["@gabrisquonk", "@lewagonlisbon"])
+@instascraper.posts # =>
+# [{
+#   :target=>"@gabrisquonk",
+#   :target_url=>"https://www.instagram.com/gabrisquonk",
+#   :shortcode=>"BgnpVPEHusZ",
+#   :url=>"https://www.instagram.com/p/BgnpVPEHusZ",
+#   :likes=>92,
+#   :comments=>1,
+#   :caption=> "Can we do it again, please? 🙏 #Batch122 #DemoDay # last Friday 🎤 🙌⚡️ One of the most theatrical shows # to ever be put on at Le Wagon.  This batched rocked it # #literally 🤘 Congrats you wonderful humans, you # 😘👏😆 Check out www.lewagon.com/demoday/122 to see # the live recording 📺💥 . . .  #learntocode # #changeyourlife #batch122 #startupportugal #lisbon # #lisboa #startups #ruby #rubyonrails #fullstack # #fullstackdeveloper #codeschool #entrepreneurs # #startuplife #codebootcamp #codingbootcamp #coding # #hiit #learning #erasmusforadults",
+#   :date=>"2018-03-22",
+#   :country_code=>nil,
+#   :publisher=>"Le Wagon Lisbon",
+#   :publisher_username=>"lewagonlisbon",
+#   :publisher_url=>"https://www.instagram.com/lewagonlisbon"
+# },
+# {
+#   ...
+# }
+@instascraper.remove_post("BgnpVPEHusZ") # delete by post shortcode
 ```
 
 ### CLI
@@ -30,7 +50,7 @@ instascraper(options) # => TODO: posts
 Run locally, specifying one or multiple (comma-separated) usernames or hashtags as targets:
 
 ```sh
-instascraper -T @gabrielecanepa,#lewagon -l 50 -k coding,lisbon
+instascraper -T @gabrisquonk,@lewagonlisbon -l 50 -k coding,lisbon -o Desktop/data.csv
 ```
 
 Print the usage message in your terminal:

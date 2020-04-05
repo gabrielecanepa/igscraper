@@ -11,8 +11,8 @@ module Scraper
 
       DEFAULTS = {
         keywords: [],
-        min_likes: 500,
-        start_date: Date.new(2019, 1, 1),
+        min_likes: 100,
+        start_date: Date.new(2018, 1, 1),
         end_date: Date.today,
       }.freeze
 
@@ -116,7 +116,8 @@ module Scraper
 
       def filter_post(post)
         {
-          post_url: "#{BASE_URL}/p/#{post[:shortcode]}",
+          shortcode: post[:shortcode],
+          url: "#{BASE_URL}/p/#{post[:shortcode]}",
           likes: post[:likes],
           comments: post[:comments],
           caption: post[:caption],
