@@ -1,6 +1,6 @@
 require_relative "scraper/client"
 
-class Instascraper
+class IGScraper
   attr_reader :posts
   attr_writer :options
 

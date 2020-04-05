@@ -1,4 +1,4 @@
-# Instascraper
+# Instagram Scraper
 
 A simple Ruby gem/application to scrape Instagram posts, built using a set of helpers and proxies to bypass [the API's rate limit](https://developers.facebook.com/docs/instagram-api/overview/#rate-limiting/).
 
@@ -8,10 +8,10 @@ The scraper can be used with <!-- TODO: a Ruby gem, -->a CLI app, or a [Sinatra]
 
 ### Ruby
 
-<!-- Install the gem with `gem install instascraper`. -->
+<!-- Install the gem with `gem install igscraper`. -->
 
 ```ruby
-require_relative "lib/instascraper"
+require_relative "lib/igscraper"
 
 options = {
   min_likes: 50,
@@ -20,9 +20,9 @@ options = {
   keywords: ["coding", "lewagon"],
 }
 
-@instascraper = Instascraper.new(options)
-@instascraper.scrape(["@gabrisquonk", "@lewagonlisbon"])
-@instascraper.posts # =>
+@scraper = InstagramScraper.new(options)
+@scraper.scrape(["@gabrisquonk", "@lewagonlisbon"])
+@scraper.posts # =>
 # [{
 #   :target=>"@gabrisquonk",
 #   :target_url=>"https://www.instagram.com/gabrisquonk",
@@ -40,7 +40,7 @@ options = {
 # {
 #   ...
 # }
-@instascraper.remove_post("BgnpVPEHusZ") # delete by post shortcode
+@scraper.remove_post("BgnpVPEHusZ") # delete by post shortcode
 ```
 
 ### CLI
@@ -50,13 +50,13 @@ options = {
 Run locally, specifying one or multiple (comma-separated) usernames or hashtags as targets:
 
 ```sh
-instascraper -T @gabrisquonk,@lewagonlisbon -l 50 -k coding,lisbon -o Desktop/data.csv
+igscraper -T @gabrisquonk,@lewagonlisbon -l 50 -k coding,lisbon -o Desktop/data.csv
 ```
 
 Print the usage message in your terminal:
 
 ```sh
-instascraper -h
+igscraper -h
 ```
 
 ### API
