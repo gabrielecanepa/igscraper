@@ -2,4 +2,4 @@
 
 require_relative "../lib/scraper/cli"
 
-Scraper::Cli::Instagram.new(ARGV).run
+Scraper::Cli.new(ARGV).run
