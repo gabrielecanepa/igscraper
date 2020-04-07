@@ -53,7 +53,7 @@ module Scraper
       status 200
       attachment file_name
 
-      CSV.generate_from_hash(hash)
+      CSV.from_h(hash)
     end
   end
 end

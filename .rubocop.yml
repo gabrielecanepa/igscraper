@@ -4,6 +4,9 @@ AllCops:
     - '**/*.rb'
   TargetRubyVersion: 2.6
 
+Layout/LineLength:
+  Max: 120
+
 Lint/SuppressedException:
   Enabled: false
 
@@ -12,9 +15,6 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Max: 100
 Metrics/ClassLength:
-  Max: 120
-
-Layout/LineLength:
   Max: 120
 
 Style/ClassAndModuleChildren:
@@ -26,6 +26,8 @@ Style/FrozenStringLiteralComment:
 Style/Lambda:
   EnforcedStyle: literal
 Style/ParallelAssignment:
+  Enabled: false
+Style/RaiseArgs:
   Enabled: false
 Style/SpecialGlobalVars:
   Enabled: false

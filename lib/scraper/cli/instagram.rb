@@ -198,7 +198,7 @@ module Scraper
         if posts.empty?
           Logger.log_error_message("Can't find any valid post for #{resource}")
         else
-          CSV.append_rows_from_hash("#{Dir.home}/#{@options[:output]}", posts)
+          CSV.insert_rows("#{Dir.home}/#{@options[:output]}", posts)
           Logger.log_success_message("Scraped #{posts.count} posts from #{resource}")
         end
       end
