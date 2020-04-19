@@ -1,12 +1,22 @@
 AllCops:
   Include:
-    - '**/Gemfile'
-    - '**/*.rb'
+    - Rakefile
+    - config.ru
+    - "**/Gemfile"
+    - "**/*.gemspec"
+    - "**/*.rake"
+    - "**/*.rb"
   TargetRubyVersion: 2.6
 
 Layout/LineLength:
   Max: 120
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
 
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
 Lint/SuppressedException:
   Enabled: false
 
@@ -15,14 +25,24 @@ Metrics/AbcSize:
 Metrics/BlockLength:
   Max: 100
 Metrics/ClassLength:
-  Max: 120
+  Max: 140
 
 Style/ClassAndModuleChildren:
   Enabled: false
 Style/Documentation:
   Enabled: false
+Style/DoubleNegation:
+  Enabled: false
+Style/ExponentialNotation:
+  Enabled: true
 Style/FrozenStringLiteralComment:
   Enabled: false
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
 Style/Lambda:
   EnforcedStyle: literal
 Style/ParallelAssignment:
