@@ -25,8 +25,6 @@ module Scraper
     private
 
     def validate_options
-      add_error("Invalid API key") unless settings.development?
-
       yield if block_given? && @errors.empty?
     end
 
@@ -45,7 +43,7 @@ module Scraper
       content_type :json
       status 200
 
-      { message: "No results were found with the specified options" }.to_json
+      { message: "No results found with the specified options" }.to_json
     end
 
     def generate_csv_from_hash(hash, file_name = "data.csv")

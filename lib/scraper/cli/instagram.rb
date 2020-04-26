@@ -21,8 +21,8 @@ module Scraper
 
         def define_parser_options(parser)
           @parser = parser
-          @parser.program_name = "instascraper v#{VERSION}"
-          @parser.banner = "Usage: #{@parser.program_name} -T <target> [options]"
+          @parser.program_name = "igscraper v#{VERSION}"
+          @parser.banner = "Usage: igscraper -T <target> [options]"
           @parser.separator "\nArguments:"
           define_arguments
           @parser.separator "\nOptions:"
@@ -36,10 +36,11 @@ module Scraper
         private
 
         def define_arguments
-          @parser.on("-T <target>",
-                     Array,
-                     "Specify one or multiple (comma-separated) usernames or hashtags to scrape from " \
-                     "(e.g. @nike,#shoes)") do |target|
+          @parser.on(
+            "-T <target>",
+            Array,
+            "Specify one or multiple comma-separated usernames or hashtags to scrape from "
+          ) do |target|
             @target = target
           end
         end
@@ -50,60 +51,57 @@ module Scraper
           define_start_date_option
           define_end_date_option
           define_output_option
-          define_help_option
           define_version_option
-          define_joke_option
+          define_help_option
         end
 
         def define_keywords_option
-          @parser.on("-k", "--keywords [x,y,z]",
-                     Array,
-                     "Specify one or multiple (comma-separated) keywords that must be present in a post caption " \
-                     "(e.g. sportswear,influencer)") do |keywords|
+          @parser.on(
+            "-k", "--keywords [x,y,z]",
+            Array,
+            "Specify one or multiple comma-separated keywords that must be present in a post caption "
+          ) do |keywords|
             @keywords = keywords
           end
         end
 
         def define_min_likes_option
-          @parser.on("-l", "--min-likes [NUM]",
-                     Integer,
-                     "Specify the minimum amount of likes for a post " \
-                     "(defaults to 500)") do |min_likes|
+          @parser.on(
+            "-l", "--min-likes [NUM]",
+            Integer,
+            "Specify the minimum amount of likes for a post (defaults to 100)"
+          ) do |min_likes|
             @min_likes = min_likes
           end
         end
 
         def define_start_date_option
-          @parser.on("-s", "--start-date [DATE]",
-                     String,
-                     "Specify the minimum date for a post in YYYY-MM-DD format " \
-                     "(defaults to 2019-01-01)") do |start_date|
+          @parser.on(
+            "-s", "--start-date [DATE]",
+            String,
+            "Specify the minimum date for a post in YYYY-MM-DD format (defaults to 2018-01-01)"
+          ) do |start_date|
             @start_date = Date.new(*start_date.split("-").map(&:to_i))
           end
         end
 
         def define_end_date_option
-          @parser.on("-e", "--end-date [DATE]",
-                     String,
-                     "Specify the maximum date for a post in YYYY-MM-DD format " \
-                     "(defaults to today)") do |end_date|
+          @parser.on(
+            "-e", "--end-date [DATE]",
+            String,
+            "Specify the maximum date for a post in YYYY-MM-DD format (defaults to today)"
+          ) do |end_date|
             @end_date = Date.new(*end_date.split("-").map(&:to_i))
           end
         end
 
         def define_output_option
-          @parser.on("-o", "--output [PATH]",
-                     String,
-                     "Specify an output file relative to your home directory " \
-                     "(defaults to 'Downloads/Instagram Data (:timestamp).csv')") do |output|
+          @parser.on(
+            "-o", "--output [PATH]",
+            String,
+            "Specify an output file relative to #{Dir.home} (defaults to 'Downloads/Instagram Data (:timestamp).csv')"
+          ) do |output|
             @output = output
-          end
-        end
-
-        def define_help_option
-          @parser.on_tail("-h", "--help", "Print this help message") do
-            Logger.log_message(@parser)
-            exit
           end
         end
 
@@ -114,10 +112,9 @@ module Scraper
           end
         end
 
-        def define_joke_option
-          @parser.on_tail("--joke", "Print a random bad joke") do
-            joke = open("https://icanhazdadjoke.com", "Accept" => "text/plain").read
-            Logger.log_message(joke)
+        def define_help_option
+          @parser.on_tail("-h", "--help", "Print this help message") do
+            Logger.log_message(@parser)
             exit
           end
         end
@@ -178,6 +175,7 @@ module Scraper
       #
       def run_client
         @options[:target].each do |resource|
+          resource = "##{resource}" unless resource.start_with?("@")
           posts = scrape_posts(resource)
           next unless posts
 

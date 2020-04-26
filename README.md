@@ -2,7 +2,7 @@
 
 A simple Ruby application to scrape Instagram posts, built using a set of helpers and proxies to bypass [Instagram API's rate limit](https://developers.facebook.com/docs/instagram-api/overview/#rate-limiting).
 
-The scraper can be used with ([TODO: a gem](https://github.com/gabrielecanepa/igscraper/issues/2)), a CLI app, or a [Sinatra](http://sinatrarb.com)-based API.
+The scraper **doesn't** need any API key, and can be used with ([TODO: a gem](https://github.com/gabrielecanepa/igscraper/issues/2)), a CLI app, or a [Sinatra](http://sinatrarb.com)-based API.
 
 ## Table of contents
 
@@ -10,17 +10,25 @@ The scraper can be used with ([TODO: a gem](https://github.com/gabrielecanepa/ig
   - [Ruby](#ruby)
   - [CLI](#cli)
   - [API](#api)
-- [Development](#development)
+- [Contributing](#contributing)
 - [License](#license)
 
 ## Usage
+
+You must have Ruby 2.6.2 in order to run this application. If you don't already, install it with `rbenv install 2.6.2` or `rvm install ruby-2.6.2`.
+
+Then, install the required gems with [Bundler](https://bundler.io):
+
+```sh
+bundle install
+```
 
 ### Ruby
 
 <!-- Install the gem with `gem install igscraper`. -->
 
 ```ruby
-require_relative "lib/igscraper" # TODO: change to `require "igscraper"` when issue #2 is done
+require_relative "lib/igscraper" # TODO: change to `require "igscraper"` after closing issue #2
 
 options = {
   min_likes: 50,
@@ -29,13 +37,15 @@ options = {
   keywords: ["coding", "lewagon"],
 }
 
-@scraper = InstagramScraper.new(options)
+@igscraper = InstagramScraper.new(options)
 
 # Scrape posts by username or hashtag
-@scraper.scrape(["@gabrisquonk", "#learntocode"])
+@igscraper.scrape("@gabrisquonk")
+@igscraper.scrape("@lewagonlisbon")
+@igscraper.scrape("#lewagon")
 
 # Read posts
-@scraper.posts # =>
+@igscraper.posts # =>
 # [
 #   {
 #     :target=>"@gabrisquonk",
@@ -56,28 +66,33 @@ options = {
 #   }
 # ]
 
-# Remove post by shortcode
-@scraper.remove_post("BgnpVPEHusZ")
+# Remove a post by shortcode
+@igscraper.remove_post("BgnpVPEHusZ")
 
 # Update the options
 new_options = {
-  min_likes: 200,
+  min_likes: 0,
   start_date: Date.new(2019, 01, 01),
+  end_date: Date.today,
+  keywords: [],
 }
-@scraper.update(new_options)
+@igscraper.update(new_options)
 
-# Generate a csv file listing the posts
-@scraper.to_csv("~/Desktop/posts.csv")
+# Scrape new posts using the updated options
+@igscraper.scrape("@fedesquonk")
+
+# Generate a CSV file containing the current posts
+@igscraper.to_csv("Desktop/posts.csv") # path relative to $HOME
 ```
 
 ### CLI
 
 > ⚠️ Make sure to have `./bin` in your `$PATH` and be in the `igscraper` folder
 
-Run locally, specifying one or multiple (comma-separated) usernames/hashtags as targets:
+Run locally, specifying one or multiple comma-separated usernames/hashtags as target (don't specify the `#` before an hashtag):
 
 ```sh
-igscraper -T @gabrisquonk,@lewagonlisbon -l 50 -k coding,lisbon -o Desktop/posts.csv
+igscraper -T @gabrisquonk,lewagon -l 50 -k coding,lisbon -o Desktop/posts.csv
 ```
 
 Print the usage message in your terminal:
@@ -100,7 +115,7 @@ foreman start
 
 ##### `GET` Get posts
 
-Returns a CSV file as attachment, containing the posts matching the specified parameters or an eventual error in JSON format.
+Returns a CSV file containing the posts matching the specified parameters or an eventual error in JSON format.
 
 - **URL**: `/`
 
@@ -118,18 +133,10 @@ Returns a CSV file as attachment, containing the posts matching the specified pa
 
 \* at least one has to be specified
 
-## Development
+## Contributing
 
-You must have Ruby 2.6.2 in order to run this application. If you don't already, just run `rbenv install 2.6.2` or `rvm install ruby-2.6.2`.
-
-Then, install the required gems with [bundler](https://bundler.io):
-
-```sh
-bundle install
-```
-
-If you want to contribute, please [create an issue](https://github.com/gabrielecanepa/igscraper/issues/new/choose), or [fork the repository](https://github.com/gabrielecanepa/igscraper/fork) and open a new pull request.
+If you want to help with this project, please [create a new issue](https://github.com/gabrielecanepa/igscraper/issues/new/choose) and/or [fork the repository](https://github.com/gabrielecanepa/igscraper/fork) and open a new pull request.
 
 ## License
 
-[MIT](./LICENSE)
+[MIT](https://github.com/gabrielecanepa/igscraper/blob/master/LICENSE)

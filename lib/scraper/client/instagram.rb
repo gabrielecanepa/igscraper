@@ -26,6 +26,15 @@ module Scraper
         @uri_proxy = URI::Proxy.new
       end
 
+      def options
+        {
+          min_likes: @min_likes,
+          start_date: @start_date,
+          end_date: @end_date,
+          keywords: @keywords,
+        }
+      end
+
       def scrape_posts(target)
         symbol, name = target.split("", 2)
         return unless %w[@ #].include?(symbol)
@@ -54,7 +63,7 @@ module Scraper
         resource["graphql"]
       end
 
-      ### Scrape posts from a resource
+      ### Scrape and parse posts from a resource
       #
       #
       def scrape_and_parse_posts(resource, end_cursor: "")
