@@ -2,7 +2,7 @@
 
 A simple Ruby application to scrape Instagram posts, built using a set of helpers and proxies to bypass [Instagram API's rate limit](https://developers.facebook.com/docs/instagram-api/overview/#rate-limiting).
 
-The app **doesn't** need any API key and can be used with ([TODO: a gem](issues/2)), a CLI app, or a [Sinatra](http://sinatrarb.com)-based API.
+The app **doesn't** need any API key and can be used with ([TODO: a gem](https://github.com/gabrielecanepa/igscraper/issues/2)), a CLI app, or a [Sinatra](http://sinatrarb.com)-based API.
 
 ## Table of contents
 
@@ -89,7 +89,7 @@ new_options = {
 
 > ⚠️ Make sure to have `./bin` in your `$PATH` and be in the `igscraper` folder
 
-Run locally, specifying one or multiple comma-separated usernames/hashtags as target (without the `#` before an hashtag):
+Run locally, specifying one or multiple comma-separated usernames/hashtags as target (without `#` before an hashtag):
 
 ```sh
 igscraper -T @gabrisquonk,lewagon -l 50 -k coding,lisbon -o Desktop/posts.csv
@@ -135,8 +135,8 @@ Returns a CSV file containing the posts matching the specified parameters or an 
 
 ## Contributing
 
-If you wish to contribute please [create a new issue](issues/new/choose) or [fork the repository](https://github.com/gabrielecanepa/igscraper/fork) and open a new pull request 🙏
+If you wish to contribute please [create a new issue](https://github.com/gabrielecanepa/igscraper/issues/new/choose) or [fork the repository](https://github.com/gabrielecanepa/igscraper/fork) and open a new pull request 🙏
 
 ## License
 
-[MIT](LICENSE)
+[MIT](https://github.com/gabrielecanepa/igscraper/blob/master/LICENSE)
