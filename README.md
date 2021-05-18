@@ -135,7 +135,7 @@ Returns a CSV file containing the posts matching the specified parameters or an 
 
 ## Contributing
 
-If you wish to contribute please [create a new issue](https://github.com/gabrielecanepa/igscraper/issues/new/choose) or [fork the repository](https://github.com/gabrielecanepa/igscraper/fork) and open a new pull request 🙏
+If you wish to contribute please [create a new issue](https://github.com/gabrielecanepa/igscraper/issues/new/choose) or [fork the repository](https://github.com/gabrielecanepa/igscraper/fork) and open a new pull request.
 
 ## License
 
