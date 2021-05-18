@@ -28,7 +28,7 @@ bundle install
 <!-- Install the gem with `gem install igscraper`. -->
 
 ```ruby
-require_relative "lib/igscraper" # TODO: change to `require "igscraper"` after closing issue #2
+require_relative "lib/igscraper"
 
 options = {
   min_likes: 50,
