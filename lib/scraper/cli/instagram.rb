@@ -185,7 +185,7 @@ module Scraper
       end
 
       def scrape_posts(resource)
-        Logger.log_recursive_message("Scraping data from #{resource}..")
+        Logger.log_recursive_message("Getting data from #{resource}..")
         @scraper.scrape_posts(resource)
       rescue OpenURI::HTTPError
         symbol, name = resource[0], resource[1..-1]
@@ -197,7 +197,7 @@ module Scraper
           Logger.log_error_message("Can't find any valid post for #{resource}")
         else
           CSV.insert_rows("#{Dir.home}/#{@options[:output]}", posts)
-          Logger.log_success_message("Scraped #{posts.count} posts from #{resource}")
+          Logger.log_success_message("Found #{posts.count} posts for #{resource}")
         end
       end
 
@@ -206,7 +206,7 @@ module Scraper
         if @posts_count.zero?
           Logger.log_error_message("😱 No posts were found with the specified options")
         else
-          Logger.log_success_message("🎉 Done! #{@posts_count} posts successfully saved in #{@options[:output]}")
+          Logger.log_success_message("🎉 Done! #{@posts_count} posts successfully saved to #{@options[:output]}")
         end
       end
     end
