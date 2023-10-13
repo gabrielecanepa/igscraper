@@ -1,8 +1,11 @@
+> **Warning**
+> This project uses a version of the Instagram API Platform [deprecated in early 2020](https://developers.facebook.com/blog/post/2018/01/30/instagram-graph-api-updates) and **is now read-only**.
+
 # Instagram Scraper
 
 A simple Ruby application to scrape Instagram posts, built using a set of helpers and proxies to bypass [Instagram API's rate limit](https://developers.facebook.com/docs/instagram-api/overview/#rate-limiting).
 
-The app **doesn't** need any API key and can be used with ([TODO: a gem](https://github.com/gabrielecanepa/igscraper/issues/2)), a CLI app, or a [Sinatra](http://sinatrarb.com)-based API.
+The app **doesn't** need any API key and can be used with a CLI app or a [Sinatra](http://sinatrarb.com)-based API.
 
 ## Table of contents
 
@@ -24,8 +27,6 @@ bundle install
 ```
 
 ### Ruby
-
-<!-- Install the gem with `gem install igscraper`. -->
 
 ```ruby
 require_relative "lib/igscraper"
@@ -131,7 +132,7 @@ Returns a CSV file containing the posts matching the specified parameters or an 
   - `end_date=[date]`
   - `output=[filename]`
 
-\* at least one has to be specified
+\*at least one has to be specified
 
 ## Contributing
 
@@ -139,4 +140,4 @@ If you wish to contribute please [create a new issue](https://github.com/gabriel
 
 ## License
 
-[MIT](https://github.com/gabrielecanepa/igscraper/blob/master/LICENSE)
+[MIT](LICENSE)
