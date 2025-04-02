@@ -1,11 +1,11 @@
-> **Warning**
+> [!IMPORTANT]
 > This project uses a version of the Instagram API Platform [deprecated in early 2020](https://developers.facebook.com/blog/post/2018/01/30/instagram-graph-api-updates) and **is now read-only**.
 
 # Instagram Scraper
 
 A simple Ruby application to scrape Instagram posts, built using a set of helpers and proxies to bypass [Instagram API's rate limit](https://developers.facebook.com/docs/instagram-api/overview/#rate-limiting).
 
-The app **doesn't** need any API key and can be used with a CLI app or a [Sinatra](http://sinatrarb.com)-based API.
+The app **doesn't need any API key** and can be used with a CLI app or a [Sinatra](http://sinatrarb.com)-based API.
 
 ## Table of contents
 
